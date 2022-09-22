@@ -17,7 +17,7 @@ import com.turns.asw.model.Commerce;
 
 @Entity
 @Table(name="asw_services")
-public class Service {
+public class Servicee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,9 +39,9 @@ public class Service {
 	
 	private int duration;	
 	
-	public Service() {}
+	public Servicee() {}
 	
-	public Service(Long id, String name_service, Commerce commerce, Date time_open, Date time_end,
+	public Servicee(Long id, String name_service, Commerce commerce, Date time_open, Date time_end,
 			int duration) {
 		super();
 		this.id = id;

@@ -198,7 +198,28 @@ public class TurnService implements TurnRepository{
 	}
 
 	@Override
-	public List<Turn> createTurns(Long id, Date date_start, Date date_end) {
-		return turnRepository.createTurns(id, date_start, date_end);
+	public List<Turn> createTurns(Long id, Date dateStart, Date dateEnd) {
+		// TODO Auto-generated method stub
+		return turnRepository.createTurns(id, dateStart, dateEnd);
 	}
+
+	@Override
+	public void createTurns2(Long id, Date dateStart, Date dateEnd) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	/*@Override
+	public List<Turn> createTurns(Long id, Date dateStart, Date dateEnd, List<Turn> listTurns) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+
+	/*@Override
+	public List<Turn> createTurns2(Long id, Date dateStart, Date dateEnd) {
+
+		return turnRepository.createTurns2(id, dateStart, dateEnd);
+	}*/
 }

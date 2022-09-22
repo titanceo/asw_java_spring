@@ -1,0 +1,69 @@
+<app-header></app-header>
+<div class="alert alert-danger alert-dismissible" role="alert" *ngIf="error">
+	<div>{{error}}</div>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlert()"></button>
+</div>
+<div style="width: 80%; margin: 10px auto;">
+	<h2 class="text-center">Generacion de turnos</h2>
+	<div class="row">
+		<div class="col-4">
+			<Select class="form-select mt-2" (change)="getServicesByCommerce()" [(ngModel)]="commerceSelected" name="commerce"
+				ngDefaultControl>
+				<option value="-1" selected>Comercio</option>
+				<option value="{{c.id}}" *ngFor="let c of commerces"> {{c.name}} </option>
+			</Select>
+		</div>
+		<div class="col-4">
+			<Select class="form-select mt-2" [(ngModel)]="serviceSelected" name="service" ngDefaultControl (change)="showTimes()">
+				<option value="-1" selected>Servicios</option>
+				<option value="{{s.id}}" *ngFor="let s of services"> {{s.name_service}} </option>
+			</Select>
+		</div>
+		<div class="col-4 mt-2">
+			{{time_open}} => {{time_end}}
+		</div>
+	</div>
+	<div class="row mt-4">
+		<div class="col-4">
+			<div class="input-group">
+				<input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="date_start" ngbDatepicker
+					#d="ngbDatepicker">
+				<button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="input-group">
+				<input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="date_end" ngbDatepicker
+					#d2="ngbDatepicker">
+				<button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+			</div>
+		</div>
+		<div class="col-4">
+			<button type="button" class="btn btn-primary" (click)="createTurns()">Ingresar</button>
+		</div>
+	</div>
+	<div class="row mt-4">
+		<div class="col-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Comercio</th>
+						<th>Servicio</th>
+						<th>Fecha Turno</th>
+						<th>Hora Inicio</th>
+						<th>Hora Fin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let t of turns">
+						<td>{{t.service.commerce.name}}</td>
+						<td>{{t.service.name_service}}</td>
+						<td>{{t.date_turn}}</td>
+						<td>{{t.time_start}}</td>
+						<td>{{t.time_end}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

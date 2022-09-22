@@ -10,35 +10,36 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.stereotype.Service;
 
-import com.turns.asw.model.Service;
-import com.turns.asw.repository.ServiceRepository;
+import com.turns.asw.model.Servicee;
+import com.turns.asw.repository.ServiceeRepository;
 
-@org.springframework.stereotype.Service
-public class ServiceService implements ServiceRepository{
+@Service
+public class ServiceeService implements ServiceeRepository{
 	
 	@Autowired //inject de este elemento sin necesidad de usar el new
-	private ServiceRepository serviceRepository;
+	private ServiceeRepository serviceRepository;
 
 	@Override
-	public List<Service> findAll() {
+	public List<Servicee> findAll() {
 		return serviceRepository.findAll();
 	}
 
 	@Override
-	public List<Service> findAll(Sort sort) {
+	public List<Servicee> findAll(Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Service> findAllById(Iterable<Long> ids) {
+	public List<Servicee> findAllById(Iterable<Long> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Service> List<S> saveAll(Iterable<S> entities) {
+	public <S extends Servicee> List<S> saveAll(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -50,19 +51,19 @@ public class ServiceService implements ServiceRepository{
 	}
 
 	@Override
-	public <S extends Service> S saveAndFlush(S entity) {
+	public <S extends Servicee> S saveAndFlush(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Service> List<S> saveAllAndFlush(Iterable<S> entities) {
+	public <S extends Servicee> List<S> saveAllAndFlush(Iterable<S> entities) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteAllInBatch(Iterable<Service> entities) {
+	public void deleteAllInBatch(Iterable<Servicee> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -80,50 +81,50 @@ public class ServiceService implements ServiceRepository{
 	}
 
 	@Override
-	public Service getOne(Long id) {
+	public Servicee getOne(Long id) {
+		// TODO Auto-generated method stub
+		return serviceRepository.getById(id);
+	}
+
+	@Override
+	public Servicee getById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Service getById(Long id) {
+	public Servicee getReferenceById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Service getReferenceById(Long id) {
+	public <S extends Servicee> List<S> findAll(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Service> List<S> findAll(Example<S> example) {
+	public <S extends Servicee> List<S> findAll(Example<S> example, Sort sort) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Service> List<S> findAll(Example<S> example, Sort sort) {
+	public Page<Servicee> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Service> findAll(Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends Service> S save(S entity) {
+	public <S extends Servicee> S save(S entity) {
 		return serviceRepository.save(entity);
 	}
 
 	@Override
-	public Optional<Service> findById(Long id) {
+	public Optional<Servicee> findById(Long id) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		return serviceRepository.findById(id);
 	}
 
 	@Override
@@ -140,12 +141,12 @@ public class ServiceService implements ServiceRepository{
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
+		serviceRepository.deleteById(id);
 		
 	}
 
 	@Override
-	public void delete(Service entity) {
+	public void delete(Servicee entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -157,7 +158,7 @@ public class ServiceService implements ServiceRepository{
 	}
 
 	@Override
-	public void deleteAll(Iterable<? extends Service> entities) {
+	public void deleteAll(Iterable<? extends Servicee> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -169,33 +170,38 @@ public class ServiceService implements ServiceRepository{
 	}
 
 	@Override
-	public <S extends Service> Optional<S> findOne(Example<S> example) {
+	public <S extends Servicee> Optional<S> findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 
 	@Override
-	public <S extends Service> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends Servicee> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Service> long count(Example<S> example) {
+	public <S extends Servicee> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends Service> boolean exists(Example<S> example) {
+	public <S extends Servicee> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public <S extends Service, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
+	public <S extends Servicee, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Servicee> findByCommerce(Long idCommerce) {
+		return serviceRepository.findByCommerce(idCommerce);
 	}
 	
 	

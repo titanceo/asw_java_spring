@@ -123,7 +123,7 @@ public class CommerceService implements CommerceRepository{
 	@Override
 	public Optional<Commerce> findById(Long id) {
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		return this.commerceRepository.findById(id);
 	}
 
 	@Override

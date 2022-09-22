@@ -8,13 +8,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.turns.asw.model.Service;
+import com.turns.asw.model.Servicee;
 
 @Entity
+@NamedStoredProcedureQuery(name = "pr_create_turns", 
+procedureName = "pk_turns.pr_create_turns", parameters = {
+  @StoredProcedureParameter(mode = ParameterMode.IN, name = "idIn", type = Long.class),
+  @StoredProcedureParameter(mode = ParameterMode.IN, name = "dateStart", type = Date.class),
+  @StoredProcedureParameter(mode = ParameterMode.IN, name = "dateEnd", type = Date.class)
+  }
+)
 @Table(name="asw_turns")
 public class Turn {
 	
@@ -24,7 +35,7 @@ public class Turn {
 	
 	@ManyToOne
 	@JoinColumn(name="id_service")
-	private Service service;
+	private Servicee service;
 	
 	@Temporal(TemporalType.DATE)
 	private Date date_turn;
@@ -39,7 +50,7 @@ public class Turn {
 	
 	public Turn() {}
 	
-	public Turn(Long id, Service service, Date date_turn, Date time_start, Date time_end, String state) {
+	public Turn(Long id, Servicee service, Date date_turn, Date time_start, Date time_end, String state) {
 		super();
 		this.id = id;
 		this.service = service;
@@ -57,11 +68,11 @@ public class Turn {
 		this.id = id;
 	}
 
-	public Service getService() {
+	public Servicee getService() {
 		return service;
 	}
 
-	public void setService(Service service) {
+	public void setService(Servicee service) {
 		this.service = service;
 	}
 

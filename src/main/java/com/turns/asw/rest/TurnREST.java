@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.turns.asw.model.Service;
+import com.turns.asw.model.Servicee;
 import com.turns.asw.model.Turn;
 import com.turns.asw.model.requestpersonalized.TurnCreate;
 import com.turns.asw.service.TurnService;
@@ -31,16 +31,6 @@ public class TurnREST {
 		return ResponseEntity.ok(turnService.findAll());
 	}
 	
-	@PostMapping
-	private ResponseEntity<Turn> saveProdut(@RequestBody Turn turn){
-		
-		try {
-			Turn productSave = turnService.save(turn);			
-			return ResponseEntity.created(new URI("/products/"+productSave.getId())).body(productSave);			
-		} catch (Exception e) {
-			return ResponseEntity.ok(turnService.getById(Long.valueOf(turn.getId())));
-		}		
-	}
 	
 	@PostMapping(value="createTurns")
 	private ResponseEntity<Turn> createTurns(@RequestBody TurnCreate turnCreate){
@@ -53,10 +43,16 @@ public class TurnREST {
 	}
 	
 	@DeleteMapping(value="delete/{id}")
-	private ResponseEntity<Boolean> deleteProduct(@PathVariable ("id") Long idProduct){
+	private ResponseEntity<Turn> deleteProduct(@PathVariable ("id") Long idTurn){
 		
-		turnService.deleteById(idProduct);
-		return  ResponseEntity.ok(!(turnService.findById(idProduct)!=null));
+		Optional<Turn> turn = turnService.findById(idTurn);
+		if(!turn.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		turnService.deleteById(idTurn);
+		return ResponseEntity.ok(new Turn());
+		//return  ResponseEntity.ok(!(turnService.findById(idProduct)!=null));
+
 	}
 	
 	@GetMapping(value="recover/{id}")
@@ -64,20 +60,4 @@ public class TurnREST {
 		return turnService.findById(idProduct);
 	}
 	
-	@PostMapping(value="savegroup")
-	private boolean saveProdutGroup(@RequestBody List<Turn> product){
-		
-		
-		try {
-			for (Turn p : product) {
-				Turn productSave = turnService.save(p);	
-	        }
-			return true;
-			//return ResponseEntity.created(new URI("/products/"+productSave.getId())).body(productSave);			
-		} catch (Exception e) {
-			return false;
-			//return ResponseEntity.ok(productService.getById(Long.valueOf(product.getId())));
-		}		
-
-	}
 }
